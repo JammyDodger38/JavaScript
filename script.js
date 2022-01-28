@@ -1,5 +1,5 @@
 // Переменные
-let title = "Заголовок"
+let title = "Урок 1"
 let screens = "Экраны"
 let screenPrice = "Экран с ценами"
 let rollback = "Откат"
