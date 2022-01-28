@@ -9,3 +9,5 @@ let adaptive = "Адаптивность"
 //Методы
 alert(screenPrice);
 console.log(rollback);
+
+//Первый урок окончен
