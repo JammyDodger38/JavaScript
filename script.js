@@ -1,10 +1,16 @@
 // Переменные
-let title = "Заголовок"
-let screens = "Экраны"
-let screenPrice = "Экран с ценами"
-let rollback = "Откат"
-let fullPrice = "Полная стоимость"
-let adaptive = "Адаптивность"
+let title = "Lesson2"
+let screens = "Простые, Сложные, Интерактивные"
+let screenPrice = 121
+let rollback = 17
+let fullPrice = 500000
+let adaptive = true
 
-alert(screenPrice);
-console.log(rollback);
+console.log(typeof title);
+console.log(typeof fullPrice);
+console.log(typeof adaptive);
+console.log(screens.length);
+console.log(screenPrice + " доллар");
+console.log(fullPrice + " рублей");
+console.log(screens.split(","));
+console.log(fullPrice * (rollback/100));
