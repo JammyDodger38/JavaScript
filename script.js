@@ -6,5 +6,6 @@ let rollback = "Откат"
 let fullPrice = "Полная стоимость"
 let adaptive = "Адаптивность"
 
+//Методы
 alert(screenPrice);
 console.log(rollback);
