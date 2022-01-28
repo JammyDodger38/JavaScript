@@ -2,7 +2,7 @@
 let title = "Lesson2"
 let screens = "Простые, Сложные, Интерактивные"
 let screenPrice = 121
-let rollback = 17
+let rollback = 18
 let fullPrice = 500000
 let adaptive = true
 
