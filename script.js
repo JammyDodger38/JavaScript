@@ -22,6 +22,9 @@ const asking = function () {
 
     do {
         screenPrice = prompt("Сколько будет стоить данная работа?")
+        if (screenPrice != null) {
+            screenPrice.trim()
+        }
     } while (!isNumber(screenPrice))
     
     adaptive = confirm("Нужен ли адаптив на сайте?")
@@ -40,6 +43,9 @@ const getAllServicePrices = function () {
 
         do {
             servicePrice = prompt("Сколько будет стоить данная работа?")
+            if (servicePrice != null) {
+                servicePrice.trim()
+            }
         } while (!isNumber(servicePrice))
 
         sum += +servicePrice
@@ -88,6 +94,7 @@ showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
 console.log("allServicePrices", allServicePrices);
+console.log("screenPrice", screenPrice);
 
 console.log(screens);
 console.log(getRollbackMessage(fullPrice));
