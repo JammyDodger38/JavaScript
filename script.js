@@ -1,4 +1,5 @@
-'use srtict';
+'use strict'
+
 // Переменные
 let title = "Lesson4"
 let screens = "Простые, Сложные, Интерактивные"
