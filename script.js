@@ -1,4 +1,4 @@
-'use srtict';
+'use strict';
 
 let title
 let screens
