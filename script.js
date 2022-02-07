@@ -50,7 +50,7 @@ const appData = {
                 price = prompt("Сколько будет стоить данная работа?")
             } while (!appData.isNumber(price))
             
-            appData.services[name] = +price
+            appData.services[name + " - " + (i+1)] = +price
         }
         
         appData.adaptive = confirm("Нужен ли адаптив на сайте?")
@@ -92,6 +92,7 @@ const appData = {
     },
 
     logger: function() {
+        console.log(appData.services);
         console.log(appData.screens);
         console.log(appData.getRollbackMessage(appData.fullPrice));
         console.log("Стоимость разработки сайта " + appData.fullPrice + " рублей.");
