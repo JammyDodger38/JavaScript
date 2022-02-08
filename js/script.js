@@ -1,5 +1,14 @@
 'use strict'
 
+let titlePage = document.getElementsByTagName('h1').item
+let buttonPage = document.getElementsByClassName('handler_btn')
+let buttonPlus = document.querySelector('.screen-btn')
+let otherItemsPercent = document.querySelectorAll('.other-items.percent')
+let otherItemsNumber = document.querySelectorAll('.other-items.number')
+let range = document.querySelector('.rollback>[type="range"]')
+let inputs = document.getElementsByClassName('.total-input').item
+let screens = document.querySelectorAll(".screen")
+
 const appData = {
     title: '',
     screens: [],
@@ -115,4 +124,4 @@ const appData = {
     }
 }
 
-appData.start()
+// appData.start()
