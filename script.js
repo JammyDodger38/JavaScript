@@ -1,127 +1,42 @@
 'use strict'
 
-let titlePage = document.getElementsByTagName('h1').item
-let buttonPage = document.getElementsByClassName('handler_btn')
-let buttonPlus = document.querySelector('.screen-btn')
-let otherItemsPercent = document.querySelectorAll('.other-items.percent')
-let otherItemsNumber = document.querySelectorAll('.other-items.number')
-let range = document.querySelector('.rollback>[type="range"]')
-let inputs = document.getElementsByClassName('.total-input').item
-let screens = document.querySelectorAll(".screen")
+const listBooks = document.querySelectorAll('.books')
+const books = document.querySelectorAll('.book')
+const bookHeader = document.querySelectorAll('h2 > a')
+const bookChapters = document.querySelectorAll('ul')
+const bookChapter2 = bookChapters[0].querySelectorAll('li')
+const bookChapter5 = bookChapters[5].querySelectorAll('li')
+const bookChapter6 = bookChapters[2].querySelectorAll('li')
+const adv = document.querySelector('.adv')
 
-const appData = {
-    title: '',
-    screens: [],
-    screenPrice: 0,
-    adaptive: true,
-    rollback: 10,
-    allServicePrices: 0,
-    fullPrice: 0,
-    servicePercentPrice: 0,
-    services: {},
-
-    isNumber: function(num) {
-        return !isNaN(parseFloat(num)) && isFinite(num)
-    },
-
-    asking: function () {
-        do {
-            appData.title = prompt("Как называется ваш проект?", "Калькулятор верстки")
-        } while (isFinite(appData.title))
-        
-
-        for (let i = 0; i < 2; i++) {
-            let name
-            do {
-                name = prompt("Какие типы экранов нужно разработать?")
-            } while (isFinite(name))
-
-            let price = 0
-
-            do {
-                price = prompt("Сколько будет стоить данная работа?")
-            } while (!appData.isNumber(price))
-
-            appData.screens.push({id: i, name: name, price: price})
-        }
-
-        
-
-        for (let i = 0; i < 2; i++) {
-            let name
-            do {
-                name = prompt("Какой дополнительный тип услуги нужен?")
-            } while (isFinite(name))
-
-            let price = 0
-            
-            do {
-                price = prompt("Сколько будет стоить данная работа?")
-            } while (!appData.isNumber(price))
-            
-            appData.services[name + " - " + (i+1)] = +price
-        }
-        
-        appData.adaptive = confirm("Нужен ли адаптив на сайте?")
-    },
-    
-    addPrices: function() {
-        for (let screen of appData.screens) {
-            appData.screenPrice += +screen.price
-        }
-
-        for (let key in appData.services) {
-            appData.allServicePrices += appData.services[key]
-        }
-    },
-
-    getFullPrice: function () {
-        appData.fullPrice = +appData.screenPrice + +appData.allServicePrices
-    },
-    
-    getServicePercentPrice: function () {
-        appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
-    },
-    
-    getTitle: function () {
-        
-        appData.title = appData.title.trim()[0].toUpperCase() + appData.title.trim().substring(1).toLowerCase()
-    },
-    
-    getRollbackMessage: function (price) {
-        if (price >= 30000){
-            return "Даем скидку в 10%";
-        } else if(price >= 15000 && price < 30000){
-            return "Даем скидку в 5%"
-        } else if (price < 15000 && price >= 0){
-            return "Скидка не предусмотрена"
-        } else {
-            return "Что-то пошло не так"
-        }
-    },
-
-    logger: function() {
-        console.log(appData.services);
-        console.log(appData.screens);
-        console.log(appData.getRollbackMessage(appData.fullPrice));
-        console.log("Стоимость разработки сайта " + appData.fullPrice + " рублей.");
-        console.log(appData.servicePercentPrice);
-
-        console.log("Все свойства и методы:");
-        for (let key in appData) {
-            console.log(key);
-        }
-    },
-
-    start: function () {
-        appData.asking()
-        appData.addPrices()
-        appData.getFullPrice()
-        appData.getServicePercentPrice()
-        appData.getTitle()
-
-        appData.logger()
-    }
+// Сортировка книг в правильном порядке
+for (let i = 0; i < books.length; i++) {
+    books[i].remove()
 }
+listBooks[0].append(books[1], books[0], books[4], books[3], books[5], books[2])
 
-// appData.start()
+// Изменение фоновой картинки
+document.body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)"
+
+// Изменение заголовка 3 книги
+bookHeader[4].innerText = "Книга 3. this и Прототипы Объектов"
+
+// Сортировка глав 2 и 5 книг
+for (let i = 0; i < bookChapter2.length; i++) {
+    bookChapter2[i].remove()
+}
+for (let i = 0; i < bookChapter5.length; i++) {
+    bookChapter5[i].remove()
+}
+bookChapters[0].append(bookChapter2[1], bookChapter2[0], bookChapter2[3], bookChapter2[6], bookChapter2[8], bookChapter2[4], bookChapter2[5], bookChapter2[7], bookChapter2[9], bookChapter2[2], bookChapter2[10])
+
+bookChapters[5].append(bookChapter5[1], bookChapter5[0], bookChapter5[9], bookChapter5[3], bookChapter5[4], bookChapter5[2], bookChapter5[6], bookChapter5[7], bookChapter5[5], bookChapter5[8], bookChapter5[10])
+
+// Добавление новой главы в 6 книгу
+let li = document.createElement('li')
+li.textContent = 'Глава 8: За пределами ES6'
+bookChapter6[9].replaceWith(li)
+bookChapters[2].append(bookChapter6[9])
+
+// Удаление рекламы
+adv.style.display = "none"
