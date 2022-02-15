@@ -18,7 +18,13 @@ const totalCountOther = document.querySelectorAll('.total-input')[2]
 const fullTotalCount = document.querySelectorAll('.total-input')[3]
 const totalCountRollback = document.querySelectorAll('.total-input')[4]
 
-let screens = document.querySelectorAll(".screen")
+let screens = document.querySelectorAll('.screen')
+
+let cms = document.querySelector('#cms-open')
+let otherSelect = document.querySelector('#cms-select')
+let hiddenList = document.querySelector('.hidden-cms-variants')
+let other = document.querySelector('.hidden-cms-variants > .main-controls__input')
+let otherValue = document.querySelector('#cms-other-input')
 
 const appData = {
     title: '',
@@ -33,6 +39,7 @@ const appData = {
     servicePercentPrice: 0,
     servicesPercent: {},
     servicesNumber: {},
+    other: 0,
 
     init: function() {
         appData.addTitle()
@@ -40,6 +47,22 @@ const appData = {
         startBtn.addEventListener('click', this.start)
         resetBtn.addEventListener('click', this.reset)
         buttonPlus.addEventListener('click', this.addScreenBlock)
+        cms.addEventListener('click', () => {
+            
+            if (cms.checked) {
+                hiddenList.style.display = 'flex'
+            } else {
+                hiddenList.style.display = 'none'
+            }
+        })
+        otherSelect.addEventListener('change', () => {
+            if (otherSelect.selectedIndex == '2') {
+                other.style.display = 'flex'
+            } else {
+                other.style.display = 'none'
+            }
+        })
+
         inputRange.addEventListener('input', () => {
             let k = 0
             let screensCheck = document.querySelectorAll(".screen")
@@ -53,8 +76,8 @@ const appData = {
                 } 
             })
             inputRangeValue.textContent = +inputRange.value + '%'
+            appData.rollback = +inputRange.value
             if(k == 0) {
-                appData.rollback = +inputRange.value
                 appData.servicePercentPrice = Math.round(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)))
                 totalCountRollback.value = appData.servicePercentPrice
             } else {
@@ -97,6 +120,10 @@ const appData = {
             const check = item.querySelector('input[type=checkbox]')
             check.checked = false
         })
+        
+        cms.checked = false
+        hiddenList.style.display = 'none'
+        other.style.display = 'none'
 
         inputRangeValue.textContent = '0%'
 
@@ -228,6 +255,19 @@ const appData = {
         }
 
         appData.fullPrice = +appData.screenPrice + +appData.servicePricesPercent + +appData.servicePricesNumber
+
+
+        if(otherSelect.selectedIndex == '1') {
+            appData.other = +otherSelect.value
+        } else if (otherSelect.selectedIndex == '2') {
+            if (+otherValue.value != '') {
+                appData.other = +otherValue.value
+            } else {
+                appData.other = '10'
+            }
+        }
+        
+        appData.fullPrice += appData.fullPrice * (appData.other / 100)
 
         appData.servicePercentPrice = Math.round(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)))
     },
