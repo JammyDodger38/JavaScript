@@ -40,8 +40,26 @@ const appData = {
         startBtn.addEventListener('click', appData.start)
         buttonPlus.addEventListener('click', appData.addScreenBlock)
         inputRange.addEventListener('input', function () {
-            inputRangeValue.textContent = +inputRange.value + '%'
-            appData.rollback = +inputRange.value
+            let k = 0
+            let screensCheck = document.querySelectorAll(".screen")
+            screensCheck.forEach(function(screen) {
+                const select = screen.querySelector('select')
+                const input = screen.querySelector('input')
+                const selectName = select.options[select.selectedIndex].textContent
+
+                if (selectName == "Тип экранов" || input.value == '' || input.value == '0') {
+                    k++
+                } 
+            })
+            
+            if(k == 0) {
+                inputRangeValue.textContent = +inputRange.value + '%'
+                appData.rollback = +inputRange.value
+                appData.servicePercentPrice = Math.round(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)))
+                totalCountRollback.value = appData.servicePercentPrice
+            } else {
+                totalCountRollback.value = 0
+            }
         })
 
     },
